@@ -7,9 +7,45 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 10%;
+    height: 10vh;
 }
 
+/* Tic Tac Toe Section */
+
 .gameboard {
-    
+    display: grid;
+    width: 80%;
+    height: 70vh;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.gamearea {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+/* Setting the border for the tic tac toe section */
+
+.top {
+    border-bottom: 2px solid black;
+}
+
+.bottom {
+    border-top: 2px solid black;
+}
+
+.left {
+    border-right: 2px solid black;
+}
+
+.right {
+    border-left: 2px solid black;
+}
+
+.middle {
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
 }
