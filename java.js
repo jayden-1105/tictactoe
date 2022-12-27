@@ -8,6 +8,11 @@ const bottomLeft = document.querySelector('.bottomleft');
 const bottomCenter = document.querySelector('.bottomcenter');
 const bottomRight = document.querySelector('.bottomright');
 const playerTurn = document.querySelector('.playerturn');
+const xScore = document.querySelector('.xscore');
+const oScore = document.querySelector('.oscore');
+const newGame = document.querySelector('.newgame');
+const resetScore = document.querySelector('.resetscore');
+
 
 topLeft.onclick = (e) => takeTurn(e);
 topCenter.onclick = (e) => takeTurn(e);
@@ -21,8 +26,8 @@ bottomRight.onclick = (e) => takeTurn(e);
 
 //Default Variable Values
 currentTurn = 'X'
-XWins = false;
-OWins = false;
+xWins = false;
+oWins = false;
 r1c1 = "";
 r1c2 = "";
 r1c3 = "";
@@ -32,6 +37,9 @@ r2c3 = "";
 r3c1 = "";
 r3c2 = "";
 r3c3 = "";
+oWinCount = 0;
+xWinCount = 0;
+
 
 // Fills in the clicked on box with the current turns symbol and disables the button
 function takeTurn(e) {
@@ -83,7 +91,7 @@ function takeTurn(e) {
     }
     changeTurn();
     checkWin();
-    changeDisplay();
+    updateDisplay();
   }
 
 // Changes whose turn it is. Will run every time a player takes a turn.
@@ -98,11 +106,11 @@ function changeTurn() {
 
 
 // Function to change the display of whose turn it is or if someone won
-function changeDisplay() {
-    if(XWins === true) {
+function updateDisplay() {
+    if(xWins === true) {
         playerTurn.innerHTML = "X Wins!"
     }
-    else if(OWins === true) {
+    else if(oWins === true) {
         playerTurn.innerHTML = "O Wins!"
     }
     else if (currentTurn === "X") {
@@ -124,7 +132,9 @@ function checkWin() {
         r1c3 === "X" && r2c2 === "X" && r3c1 === "X" ||
         r2c1 === "X" && r2c2 === "X" && r2c3 === "X" ||
         r1c3 === "X" && r2c3 === "X" && r3c3 === "X"){
-            XWins = true;
+            xWins = true;
+            xWinCount++;
+            updateScoreboard()
             disableButtons();
     }
     else if (r1c1 === "O" && r1c2 === "O" && r1c3 === "O" ||  
@@ -135,7 +145,9 @@ function checkWin() {
         r1c3 === "O" && r2c2 === "O" && r3c1 === "O" ||
         r2c1 === "O" && r2c2 === "O" && r2c3 === "O" ||
         r1c3 === "O" && r2c3 === "O" && r3c3 === "O"){
-            OWins = true;
+            oWins = true;
+            oWinCount++;
+            updateScoreboard()
             disableButtons();
     }
 }
@@ -151,4 +163,11 @@ function disableButtons() {
     bottomLeft.disabled = true;
     bottomCenter.disabled = true;
     bottomRight.disabled = true;
+}
+
+// Function to update scoreboard
+
+function updateScoreboard() {
+    oScore.innerHTML = `O Wins: ${oWinCount}`;
+    xScore.innerHTML = `X Wins: ${xWinCount}`;
 }
