@@ -81,18 +81,19 @@ function fillBox(e) {
         bottomRight.disabled = true;
         r3c3 = currentTurn;
     }
-    console.log(r1c1);
-    console.log(r1c2);
-    console.log(r1c3);
-    console.log(r2c1);
-    console.log(r2c2);
-    console.log(r2c3);
-    console.log(r3c1);
-    console.log(r3c2);
-    console.log(r3c3);
+    // console.log(r1c1);
+    // console.log(r1c2);
+    // console.log(r1c3);
+    // console.log(r2c1);
+    // console.log(r2c2);
+    // console.log(r2c3);
+    // console.log(r3c1);
+    // console.log(r3c2);
+    // console.log(r3c3);
     changeTurn();
+    checkWin();
     changeDisplay();
-}
+  }
 
 // Determines whose turn it is then fills the selected box with the appropriate X or O 
 function changeTurn() {
@@ -107,10 +108,56 @@ function changeTurn() {
 
 // Function to change the display of whose turn it is
 function changeDisplay() {
-    if (currentTurn === "X") {
+    if(XWins === true) {
+        playerTurn.innerHTML = "X Wins!"
+    }
+    else if(OWins === true) {
+        playerTurn.innerHTML = "O Wins!"
+    }
+    else if (currentTurn === "X") {
         playerTurn.innerHTML = "It's X's Turn"
     }
     else {
         playerTurn.innerHTML = "It's O's Turn"
     }
+}
+
+//Function to check for a winner
+function checkWin() {
+
+    if (r1c1 === "X" && r1c2 === "X" && r1c3 === "X" ||  
+        r1c1 === "X" && r2c1 === "X" && r3c1 === "X" ||
+        r1c1 === "X" && r2c2 === "X" && r3c3 === "X" ||
+        r1c2 === "X" && r2c2 === "X" && r3c2 === "X" ||
+        r1c3 === "X" && r2c3 === "X" && r3c3 === "X" ||
+        r1c3 === "X" && r2c2 === "X" && r3c1 === "X" ||
+        r2c1 === "X" && r2c2 === "X" && r2c3 === "X" ||
+        r1c3 === "X" && r2c3 === "X" && r3c3 === "X"){
+            XWins = true;
+            disableButtons();
+    }
+    else if (r1c1 === "O" && r1c2 === "O" && r1c3 === "O" ||  
+        r1c1 === "O" && r2c1 === "O" && r3c1 === "O" ||
+        r1c1 === "O" && r2c2 === "O" && r3c3 === "O" ||
+        r1c2 === "O" && r2c2 === "O" && r3c2 === "O" ||
+        r1c3 === "O" && r2c3 === "O" && r3c3 === "O" ||
+        r1c3 === "O" && r2c2 === "O" && r3c1 === "O" ||
+        r2c1 === "O" && r2c2 === "O" && r2c3 === "O" ||
+        r1c3 === "O" && r2c3 === "O" && r3c3 === "O"){
+            OWins = true;
+            disableButtons();
+    }
+}
+
+// Function to disable all buttons after a win
+function disableButtons() {
+    topLeft.disabled = true;
+    topCenter.disabled = true;
+    topRight.disabled = true;
+    middleCenter.disabled = true;
+    middleRight.disabled = true;
+    middleLeft.disabled = true;
+    bottomLeft.disabled = true;
+    bottomCenter.disabled = true;
+    bottomRight.disabled = true;
 }
