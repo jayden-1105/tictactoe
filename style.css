@@ -26,6 +26,15 @@ body {
     flex-direction: column;
 }
 
+button {
+    background-color: transparent;
+    border: none;
+    
+}
+
+button:hover {
+    background-color: blue;
+}
 
 /* Setting the border for the tic tac toe section */
 
@@ -49,3 +58,9 @@ body {
     border-top: 2px solid black;
     border-bottom: 2px solid black;
 }
+
+.center{
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+}
+
