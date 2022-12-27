@@ -9,15 +9,15 @@ const bottomCenter = document.querySelector('.bottomcenter');
 const bottomRight = document.querySelector('.bottomright');
 const playerTurn = document.querySelector('.playerturn');
 
-topLeft.onclick = (e) => fillBox(e);
-topCenter.onclick = (e) => fillBox(e);
-topRight.onclick = (e) => fillBox(e);
-middleCenter.onclick = (e) => fillBox(e);
-middleRight.onclick = (e) => fillBox(e);
-middleLeft.onclick = (e) => fillBox(e);
-bottomLeft.onclick = (e) => fillBox(e);
-bottomCenter.onclick = (e) => fillBox(e);
-bottomRight.onclick = (e) => fillBox(e);
+topLeft.onclick = (e) => takeTurn(e);
+topCenter.onclick = (e) => takeTurn(e);
+topRight.onclick = (e) => takeTurn(e);
+middleCenter.onclick = (e) => takeTurn(e);
+middleRight.onclick = (e) => takeTurn(e);
+middleLeft.onclick = (e) => takeTurn(e);
+bottomLeft.onclick = (e) => takeTurn(e);
+bottomCenter.onclick = (e) => takeTurn(e);
+bottomRight.onclick = (e) => takeTurn(e);
 
 //Default Variable Values
 currentTurn = 'X'
@@ -34,7 +34,7 @@ r3c2 = "";
 r3c3 = "";
 
 // Fills in the clicked on box with the current turns symbol and disables the button
-function fillBox(e) {
+function takeTurn(e) {
     let selection = e.target.value;
     if (selection == "topLeft") {
         topLeft.innerHTML = currentTurn;
@@ -81,21 +81,12 @@ function fillBox(e) {
         bottomRight.disabled = true;
         r3c3 = currentTurn;
     }
-    // console.log(r1c1);
-    // console.log(r1c2);
-    // console.log(r1c3);
-    // console.log(r2c1);
-    // console.log(r2c2);
-    // console.log(r2c3);
-    // console.log(r3c1);
-    // console.log(r3c2);
-    // console.log(r3c3);
     changeTurn();
     checkWin();
     changeDisplay();
   }
 
-// Determines whose turn it is then fills the selected box with the appropriate X or O 
+// Changes whose turn it is. Will run every time a player takes a turn.
 function changeTurn() {
     if(currentTurn === 'X') {
         currentTurn = 'O';
@@ -106,7 +97,7 @@ function changeTurn() {
 }
 
 
-// Function to change the display of whose turn it is
+// Function to change the display of whose turn it is or if someone won
 function changeDisplay() {
     if(XWins === true) {
         playerTurn.innerHTML = "X Wins!"

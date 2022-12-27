@@ -27,7 +27,7 @@ body {
     flex-direction: column;
 }
 
-button {
+.gameboard button {
     background-color: transparent;
     border: none;
     font-size: 70px;
@@ -40,29 +40,30 @@ button:hover {
 
 /* Setting the border for the tic tac toe section */
 
-.top {
+.gameboard .top {
     border-bottom: 2px solid black;
 }
 
-.bottom {
+.gameboard .bottom {
     border-top: 2px solid black;
 }
 
-.left {
+.gameboard .left {
     border-right: 2px solid black;
 }
 
-.right {
+.gameboard .right {
     border-left: 2px solid black;
 }
 
-.middle {
+.gameboard .middle {
     border-top: 2px solid black;
     border-bottom: 2px solid black;
 }
 
-.center{
+.gameboard .center{
     border-left: 2px solid black;
     border-right: 2px solid black;
 }
+
 
