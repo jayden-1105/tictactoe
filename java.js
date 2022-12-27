@@ -24,11 +24,14 @@ bottomLeft.onclick = (e) => takeTurn(e);
 bottomCenter.onclick = (e) => takeTurn(e);
 bottomRight.onclick = (e) => takeTurn(e);
 newGame.onclick = () => startNewGame();
+resetScore.onclick = () => newScore();
+
 
 //Default Variable Values
 currentTurn = 'X'
 xWins = false;
 oWins = false;
+catGame = false;
 r1c1 = "";
 r1c2 = "";
 r1c3 = "";
@@ -108,7 +111,10 @@ function changeTurn() {
 
 // Function to change the display of whose turn it is or if someone won
 function updateDisplay() {
-    if(xWins === true) {
+    if(catGame === true) {
+        playerTurn.innerHTML = "Cat Game!"
+    }
+    else if(xWins === true) {
         playerTurn.innerHTML = "X Wins!"
     }
     else if(oWins === true) {
@@ -135,7 +141,7 @@ function checkWin() {
         r1c3 === "X" && r2c3 === "X" && r3c3 === "X"){
             xWins = true;
             xWinCount++;
-            updateScoreboard()
+            updateScoreboard();
             disableButtons();
     }
     else if (r1c1 === "O" && r1c2 === "O" && r1c3 === "O" ||  
@@ -148,9 +154,16 @@ function checkWin() {
         r1c3 === "O" && r2c3 === "O" && r3c3 === "O"){
             oWins = true;
             oWinCount++;
-            updateScoreboard()
+            updateScoreboard();
             disableButtons();
     }
+    else if (r1c1 != "" && r1c2 != "" && r1c3 != "" &&
+             r2c1 != "" && r2c2 != "" && r2c3 != "" &&
+             r3c1 != "" && r3c2 != "" && r3c3 != "") {
+                catGame = true;
+                updateScoreboard();
+                disableButtons();
+             }
 }
 
 // Function to disable all buttons/tictactoe sectors after a win
@@ -212,6 +225,7 @@ function resetVariables(){
     r3c3 = "";
     xWins = false;
     oWins = false;
+    catGame = false;
 }
 
 // New Game function
@@ -220,4 +234,12 @@ function startNewGame() {
     clearGameboard();
     enableButtons();
     updateDisplay();
+}
+
+//Function to reset score and start a new game
+function newScore() {
+    oWinCount = 0;
+    xWinCount = 0;
+    startNewGame();
+    updateScoreboard();
 }
