@@ -7,6 +7,7 @@ const middleRight = document.querySelector('.middleright');
 const bottomLeft = document.querySelector('.bottomleft');
 const bottomCenter = document.querySelector('.bottomcenter');
 const bottomRight = document.querySelector('.bottomright');
+const playerTurn = document.querySelector('.playerturn');
 
 topLeft.onclick = (e) => fillBox(e);
 topCenter.onclick = (e) => fillBox(e);
@@ -24,7 +25,7 @@ XWins = false;
 OWins = false;
 
 
-// Fills in the clicked on box with the current turns symbol
+// Fills in the clicked on box with the current turns symbol and disables the button
 function fillBox(e) {
     let selection = e.target.value;
     if (selection == "topLeft") {
@@ -63,8 +64,8 @@ function fillBox(e) {
         bottomRight.innerHTML = currentTurn;
         bottomRight.disabled = true;
     }
-    
     changeTurn();
+    changeDisplay();
 }
 
 // Determines whose turn it is then fills the selected box with the appropriate X or O 
@@ -77,3 +78,13 @@ function changeTurn() {
     }
 }
 
+
+// Function to change the display of whose turn it is
+function changeDisplay() {
+    if (currentTurn === "X") {
+        playerTurn.innerHTML = "It's X's Turn"
+    }
+    else {
+        playerTurn.innerHTML = "It's O's Turn"
+    }
+}
