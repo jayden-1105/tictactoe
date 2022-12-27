@@ -29,30 +29,39 @@ function fillBox(e) {
     let selection = e.target.value;
     if (selection == "topLeft") {
         topLeft.innerHTML = currentTurn;
+        topLeft.disabled = true;
     }
     if (selection == "topCenter") {
         topCenter.innerHTML = currentTurn;
+        topCenter.disabled = true;
     }
     if (selection == "topRight") {
         topRight.innerHTML = currentTurn;
+        topRight.disabled = true;
     }
     if (selection == "middleLeft") {
         middleLeft.innerHTML = currentTurn;
+        middleLeft.disabled = true;
     }
     if (selection == "middleCenter") {
         middleCenter.innerHTML = currentTurn;
+        middleCenter.disabled = true;
     }
     if (selection == "middleRight") {
         middleRight.innerHTML = currentTurn;
+        middleRight.disabled = true;
     }
     if (selection == "bottomLeft") {
         bottomLeft.innerHTML = currentTurn;
+        bottomLeft.disabled = true;
     }
     if (selection == "bottomCenter") {
         bottomCenter.innerHTML = currentTurn;
+        bottomCenter.disabled = true;
     }
     if (selection == "bottomRight") {
         bottomRight.innerHTML = currentTurn;
+        bottomRight.disabled = true;
     }
     
     changeTurn();
