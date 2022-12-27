@@ -23,6 +23,7 @@ middleLeft.onclick = (e) => takeTurn(e);
 bottomLeft.onclick = (e) => takeTurn(e);
 bottomCenter.onclick = (e) => takeTurn(e);
 bottomRight.onclick = (e) => takeTurn(e);
+newGame.onclick = () => startNewGame();
 
 //Default Variable Values
 currentTurn = 'X'
@@ -152,7 +153,7 @@ function checkWin() {
     }
 }
 
-// Function to disable all buttons after a win
+// Function to disable all buttons/tictactoe sectors after a win
 function disableButtons() {
     topLeft.disabled = true;
     topCenter.disabled = true;
@@ -165,9 +166,58 @@ function disableButtons() {
     bottomRight.disabled = true;
 }
 
+// Function to enable all buttons/tictactoe sectors after a win
+function enableButtons() {
+    topLeft.disabled = false;
+    topCenter.disabled = false;
+    topRight.disabled = false;
+    middleCenter.disabled = false;
+    middleRight.disabled = false;
+    middleLeft.disabled = false;
+    bottomLeft.disabled = false;
+    bottomCenter.disabled = false;
+    bottomRight.disabled = false;
+}
+
 // Function to update scoreboard
 
 function updateScoreboard() {
     oScore.innerHTML = `O Wins: ${oWinCount}`;
     xScore.innerHTML = `X Wins: ${xWinCount}`;
+}
+
+//Function to clear gameboard for new game
+function clearGameboard() {
+    topLeft.innerHTML = ""
+    topCenter.innerHTML = ""
+    topRight.innerHTML = ""
+    middleLeft.innerHTML = ""
+    middleCenter.innerHTML = ""
+    middleRight.innerHTML = ""
+    bottomLeft.innerHTML = ""
+    bottomCenter.innerHTML = ""
+    bottomRight.innerHTML = ""
+}
+
+//Function to reset all row/column values to "" and xWin and OWin back to false
+function resetVariables(){
+    r1c1 = "";
+    r1c2 = "";
+    r1c3 = "";
+    r2c1 = "";
+    r2c2 = "";
+    r2c3 = "";
+    r3c1 = "";
+    r3c2 = "";
+    r3c3 = "";
+    xWins = false;
+    oWins = false;
+}
+
+// New Game function
+function startNewGame() {
+    resetVariables();
+    clearGameboard();
+    enableButtons();
+    updateDisplay();
 }
